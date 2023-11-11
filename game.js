@@ -26,8 +26,8 @@ function changeButtonColor(button) {
 }
 
 //function play audio
-function playSound(button_name) {
-    let sound = new Audio(`../sounds/${button_name}.mp3`);
+function playSound(audio_name) {
+    let sound = new Audio(`../sounds/${audio_name}.mp3`);
     sound.play()
 
 }
@@ -90,7 +90,7 @@ function levelUp() {
 }
 
 
-//change button color
+//Function to Add to player sequence 
 function addPlayerSequence(button_pressed) {
 
     let button_pressed_name = button_pressed.id
@@ -106,8 +106,8 @@ function addPlayerSequence(button_pressed) {
     //add chosen button to player sequence
     playerSequence.push(button_pressed_index)
 
-    //check
-    checkSequence(playerSequence)
+    //compare with correct sequence
+    checkSequence()
 
 }
 
@@ -149,6 +149,7 @@ function gameOver() {
 
     }, 1000);
 
+    playSound("wrong")
 
     currentLevel = 0
     playerSequence = []
