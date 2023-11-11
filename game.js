@@ -21,7 +21,7 @@ function changeButtonColor(button) {
     button.classList.add("pressed")
     setTimeout(function () {
         button.classList.remove("pressed")
-    }, 500);
+    }, 400);
 
 }
 
@@ -72,16 +72,20 @@ function levelUp() {
 
     sequenceToFollow.push(random_index)
 
-    //change button background
-    const button_generated = all_btn[random_index]
-    changeButtonColor(button_generated)
+    
+    const interval = setInterval(function () {
+        //change button background
+        const button_generated = all_btn[random_index]
+        changeButtonColor(button_generated)
 
-    //add audio
-    const button_generated_name = all_btn[random_index].id
-    playSound(button_generated_name)
+        //add audio
+        const button_generated_name = all_btn[random_index].id
+        playSound(button_generated_name)
 
+        //stop calling
+        clearInterval(interval);
 
-
+    }, 500)
 
 }
 
@@ -113,7 +117,7 @@ function addPlayerSequence(button_pressed) {
 function checkSequence() {
 
     if (playerSequence.length == currentLevel) {
-  
+
         if (playerSequence.toString() == sequenceToFollow.toString()) {
             levelUp()
         }
@@ -137,7 +141,7 @@ function checkSequence() {
 //Game Over
 function gameOver() {
 
-    
+
     document.body.classList.add("game-over")
     setTimeout(function () {
         document.body.classList.remove("game-over")
