@@ -13,12 +13,7 @@ let level_title = document.getElementById("level-title")
 let currentLevel = 0
 
 
-//function play audio
-function playSound(button_name) {
-    let sound = new Audio(`../sounds/${button_name}.mp3`);
-    sound.play()
 
-}
 
 //function change background
 function changeButtonColor(button) {
@@ -31,7 +26,12 @@ function changeButtonColor(button) {
 
 }
 
+//function play audio
+function playSound(button_name) {
+    let sound = new Audio(`../sounds/${button_name}.mp3`);
+    sound.play()
 
+}
 
 function clickButton() {
 
@@ -80,7 +80,7 @@ function levelUp() {
 
     //add audio
     const button_generated_name = all_btn[random_index].id
-    playSound(sequenceToFollow[button_generated_name])
+    playSound(button_generated_name)
 
 }
 
