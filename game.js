@@ -18,7 +18,6 @@ let currentLevel = 0
 //function change background
 function changeButtonColor(button) {
 
-    //change background to grey
     button.classList.add("pressed")
     setTimeout(function () {
         button.classList.remove("pressed")
@@ -33,6 +32,8 @@ function playSound(button_name) {
 
 }
 
+
+//click on button event
 function clickButton() {
 
     green_btn.addEventListener('click', function () {
@@ -70,9 +71,6 @@ function levelUp() {
     let random_index = Math.floor(Math.random() * 4)
 
     sequenceToFollow.push(random_index)
-    console.log("level up ", sequenceToFollow, all_btn[random_index].id)
-    lenght_sequence = sequenceToFollow.length
-
 
     //change button background
     const button_generated = all_btn[random_index]
@@ -81,6 +79,9 @@ function levelUp() {
     //add audio
     const button_generated_name = all_btn[random_index].id
     playSound(button_generated_name)
+
+
+
 
 }
 
@@ -97,7 +98,7 @@ function addPlayerSequence(button_pressed) {
     //add audio
     playSound(button_pressed_name)
 
-    
+
     //add chosen button to player sequence
     playerSequence.push(button_pressed_index)
 
@@ -111,18 +112,13 @@ function addPlayerSequence(button_pressed) {
 //compare player and game sequences
 function checkSequence() {
 
-    console.log(`in check ,player seq : ${playerSequence},game seq ${sequenceToFollow}`)
-
     if (playerSequence.length == currentLevel) {
-        console.log(`level = player seq ${playerSequence.length}`)
-
+  
         if (playerSequence.toString() == sequenceToFollow.toString()) {
-            console.log("Same sequence")
             levelUp()
         }
 
         else {
-            console.log("wrong sequence")
             gameOver()
         }
 
@@ -141,7 +137,7 @@ function checkSequence() {
 //Game Over
 function gameOver() {
 
-    console.log("GAME OVERRR")
+    
     document.body.classList.add("game-over")
     setTimeout(function () {
         document.body.classList.remove("game-over")
@@ -164,7 +160,7 @@ function gameOver() {
 document.addEventListener('keydown', function (event) {
     console.log("keydown entered")
 
-    if (currentLevel <= 0 & game_start == true) {
+    if (game_start == true) {
         level_title.innerHTML = `Level ${currentLevel}`
         levelUp();
         game_start = false
